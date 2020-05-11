@@ -1,5 +1,5 @@
 # core-js-fun-quiz-game
-![image](https://user-images.githubusercontent.com/32133607/81563645-273e1d80-93b4-11ea-896e-916b52345d2a.png)
+![image](https://github.com/shahiddhariwala/core-js-fun-quiz-game/blob/master/finalSS.png)
 
 -- Let's build a fun quiz game in the console! ---
 
