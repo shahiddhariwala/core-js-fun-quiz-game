@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Console Base JS Quiz Game</title>
+    <link rel="icon" type="image/png" href="icon.png">
     <style>
         body {
-            background-image: url("globe.gif");
+            background-image: url("globe.png");
             background-repeat: no-repeat;
             background-size: 100%;
         }
@@ -14,7 +15,21 @@
 </head>
 
 <body>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <!-- 
+    defer is Boolean attribute is set to indicate to a
+     browser that the script is meant to be executed 
+     after the document has been parsed,
+     but before firing DOMContentLoaded.
+    Scripts with the defer attribute will prevent the
+     DOMContentLoaded event from firing until the script
+      has loaded and finished evaluating.
+    This attribute must not be used if the src attribute 
+    is absent (i.e. for inline scripts), in this case 
+    it would have no effect.
+    To achieve a similar effect for dynamically 
+    inserted scripts use async="false" instead. Scripts with the defer attribute will execute in the order in which they appear in the document. -->
+
 </body>
 
 </html>
