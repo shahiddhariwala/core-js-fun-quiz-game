@@ -29,13 +29,8 @@ Date     : 11-May-2020
   var q3 = new Questions(
     "What does best describe the coding ?",
     ["Hard", "Boring", "Lazy", "Fun"],
-    2
+    3
   );
-
-  var questionArray = [q1, q2, q3];
-
-  var randomQuestionIndex = Math.floor(Math.random() * questionArray.length);
-
   //displaying it console
 
   Questions.prototype.displayQuestion = function () {
@@ -45,19 +40,53 @@ Date     : 11-May-2020
     }
   };
 
-  questionArray[randomQuestionIndex].displayQuestion();
-
-  var userAnswer = parseInt(this.prompt("Please Enter Answer ", "exit"));
-
   // Check the correct answer
 
-  Questions.prototype.checkAnswer = function (userAnswer) {
+  Questions.prototype.checkAnswer = function (userAnswer, callBack) {
+    var sc;
     if (userAnswer === this.correct) {
       console.log("Aha Right Answer :) Genius");
+      sc = callBack(true);
     } else {
       console.log("Oho Wrong Answer :( , try again ");
+      sc = callBack(false);
     }
+    this.displayScore(sc);
   };
 
-  questionArray[randomQuestionIndex].checkAnswer(userAnswer);
+  function score() {
+    var sc = 0;
+    return function (correct) {
+      if (correct) {
+        sc++;
+      }
+      return sc;
+    };
+  }
+
+  // CLosure (sc)
+  var keepScore = score();
+
+  //display score
+
+  Questions.prototype.displayScore = function (sc) {
+    console.log("----------------------------------------");
+    console.log("Your score is " + sc);
+  };
+  var questionArray = [q1, q2, q3];
+
+  function nextQuestion() {
+    var randomQuestionIndex = Math.floor(Math.random() * questionArray.length);
+    questionArray[randomQuestionIndex].displayQuestion();
+
+    var userAnswer = this.prompt("Please Enter Answer ", "exit");
+
+    if (userAnswer !== "exit") {
+      questionArray[randomQuestionIndex].checkAnswer(
+        parseInt(userAnswer),keepScore
+      );
+      nextQuestion();
+    }
+  }
+  nextQuestion();
 })();
